@@ -3,10 +3,10 @@ import zxcvbn from 'zxcvbn';
 
 const PasswordStrengthMeter = ({ password }) => {
   const testResult = zxcvbn(password);
-  const num = testResult.score * 100/4;
+  const num = (testResult.score * 100) / 4;
 
   const createPassLabel = () => {
-    switch(testResult.score) {
+    switch (testResult.score) {
       case 0:
         return 'Very weak';
       case 1:
@@ -20,10 +20,10 @@ const PasswordStrengthMeter = ({ password }) => {
       default:
         return '';
     }
-  }
+  };
 
   const funcProgressColor = () => {
-    switch(testResult.score) {
+    switch (testResult.score) {
       case 0:
         return '#828282';
       case 1:
@@ -37,13 +37,13 @@ const PasswordStrengthMeter = ({ password }) => {
       default:
         return 'none';
     }
-  }
+  };
 
   const changePasswordColor = () => ({
     width: `${num}%`,
     background: funcProgressColor(),
-    height: '7px'
-  })
+    height: '7px',
+  });
 
   return (
     <>
@@ -52,7 +52,7 @@ const PasswordStrengthMeter = ({ password }) => {
       </div>
       <p style={{ color: funcProgressColor() }}>{createPassLabel()}</p>
     </>
-  )
-}
+  );
+};
 
-export default PasswordStrengthMeter
+export default PasswordStrengthMeter;
